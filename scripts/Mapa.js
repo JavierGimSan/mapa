@@ -5,7 +5,7 @@ class Mapa {
     #currentLon;
 
     constructor() {
-        const mapCenter = [this.#currentLat, this.#currentLon];//Definir centre del mapa per defecte
+        const mapCenter = [CURRENT_LAT, CURRENT_LON]; //Definir centre del mapa per defecte
         this.#getPosicioActual();
 
         const zoomLevel = 13;//Zoom per defecte
@@ -15,9 +15,9 @@ class Mapa {
     }
 
     //Funció per mostrar el punt inicial de la posició actual
-    mostrarPuntInicial(latitud, longitud) {
+    mostrarPuntInicial(latitud, longitud, zoomLevel) {
         L.marker([latitud, longitud]).addTo(this.#map).bindPopup("<span>Estàs aquí</span>").openPopup();
-        this.this.#map = L.map('map').setView([latitud, longitud], zoomLevel);
+        this.#map.setView([latitud, longitud], zoomLevel);
     }
 
     actualitzarPosInitMapa(lat, lon) { }
@@ -35,7 +35,7 @@ class Mapa {
                 lat = position.coords.latitude;
                 lon = position.coords.longitude;
                 //
-                this.mostrarPuntInicial(lat, lon);
+                this.mostrarPuntInicial(lat, lon, 13);
             }, function (error) {
                 console.error("Error en la geolocalización:", error);
             });
