@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App interès</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <link rel="stylesheet" href="/style/style.css">
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="menu-main">
+            <div class="filtres">
+                <div class="filtres-tipus-ordenacio">
+                    <div class="filtre-tipus">
+                        <label for="tipus">Tipus:</label>
+                        <select id="tipus" name="tipus">
+                            <!-- Al començar estarà buit -->
+                        </select>
+                    </div>
+                    <div class="filtre-ordenacio">
+                        <label for="ordenacio">Ordenació:</label>
+                        <select id="ordenacio" name="ordenacio">
+                            <option value="ascendent">Ascendent</option>
+                            <option value="descendent">Descendent</option>
+                        </select>
+                    </div>
+                </div>
+                <input class="filtre-input" placeholder="Filtrar per nom..."></input>
+            </div>
+            <div class="informacio">No hi ha informació per mostrar</div>
+            <div class="numTotal-netejar">
+                <div>
+                    <p class="num-total">Número total:</p>
+                </div>
+                <div class="boto-netejar-container">
+                    <button class="boto-netejar">Netejar tot</button>
+                </div>
+            </div>
+            <div class="dropZone">Arrastra aquí el teu CSV</div>
+        </div>
+        <div id="map"></div>
+    </div>
+    <script src="/scripts/const.js"></script>
+    <script src="scripts/PuntInteres.js"></script>
+    <script src="/scripts/Mapa.js"></script>
+    <script src="/scripts/app.js"></script>
+</body>
+
+</html>
