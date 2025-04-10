@@ -40,6 +40,12 @@ const readCSV = function (file) {
         showMessage("Error reading the file. Please try again.", "error");
     };
     reader.readAsText(file, "UTF-8");
+
+    let tipus = new Set();
+
+    for(let i = 1; i<=fitxer.length; i++){
+        console.log(fitxer["tipus"]);
+    }
 }
 
 const pintarEspai = function(obj){
@@ -48,17 +54,17 @@ const pintarEspai = function(obj){
 }
 
 const pintarMuseu = function(obj){
-    
+    const pintarMuseu = document.createElement("div");    
 }
 
 const pintarAtraccio = function(obj){
-    
+    const pintarAtraccio = document.createElement("div");
 }
 
 const loadData = function (fitxer) {
     numId++;
     fitxer.forEach((obj) => {
-        let dades = liniaCSV.split(CHAR_CSV); // CHAR_CSV es una oncstante definida en const.js. No hace falta definirla pero son buenas prácticas.
+        let dades = liniaCSV.split(CHAR_CSV); // CHAR_CSV es una constante definida en const.js. No hace falta definirla pero son buenas prácticas.
         switch (obj.tipus.toLowerCase()) {
             case "espai":
                 console.log("Instancia objecte PuntInteres");
@@ -91,6 +97,8 @@ const loadData = function (fitxer) {
         }
     });
 }
+
+
 
 
 
