@@ -39,6 +39,7 @@ const readCSV = function (file) {
         // Aquí rebem la informació
         fitxer = reader.result.trim().split("\n").slice(1);
         console.log(fitxer);
+        loadData(fitxer)
 
         //Afegim al tipusSet els tipus que hi ha al CSV
         for(let i = 0; i<fitxer.length; i++){
@@ -49,11 +50,10 @@ const readCSV = function (file) {
         }
         console.log(tipusSet);
 
-        //Per netejar el desplegable al afegir un nou fitxer es crea una copia de selectTipus amb el spreadOperator (...)
-        const selectTipus = document.querySelector(".tipus");
-        [...selectTipus.options].forEach((option) => {
+        //Per netejar el desplegable al afegir un nou fitxer es crea una copia de tipusObj amb el spreadOperator (...)
+        [...tipusObj.options].forEach((option) => {
             if (option.textContent !== "Tots") {
-                selectTipus.removeChild(option);
+                tipusObj.removeChild(option);
             }
         });
 
@@ -62,7 +62,7 @@ const readCSV = function (file) {
             const option = document.createElement("option");
             option.value = tipus;
             option.textContent = tipus;
-            selectTipus.appendChild(option);
+            tipusObj.appendChild(option);
         })
 
     };
@@ -74,45 +74,169 @@ const readCSV = function (file) {
 }
 
 const pintarEspai = function(obj){
-    const pi = document.createElement("div");
-    //pi.textContent = //obj.etc...
+    const pintarEsp = document.createElement("div"); //Div que contindrà una localització
+    pintarEsp.classList.add("espai");
+
+    const titolEsp = document.createElement("div") //Div DINS del contenidor de la localització, amb el nom de l'espai
+    const nom = document.createElement("h3");
+    nom.textContent = obj.nom;
+    titolEsp.appendChild(nom);
+    titolEsp.classList.add("titol-localitzacio");
+    pintarEsp.appendChild(titolEsp);
+
+    
+    const infoEsp = document.createElement("div"); //Div DINS del contenidor de la localització, sota el nom de l'espai, que conté la informació del lloc
+    infoEsp.classList.add("info-localitzacio");
+
+    const ciutat = document.createElement("p");
+    ciutat.textContent = `Ciutat: ${obj.ciutat} | `;
+    infoEsp.appendChild(ciutat);
+
+    const tipus = document.createElement("p");
+    tipus.textContent = `Tipus: ${obj.tipus}`;
+    infoEsp.appendChild(tipus);
+ 
+    pintarEsp.appendChild(infoEsp);
+
+    const deleteButton = document.createElement("button");
+    deleteButton.classList.add("boto-delete");
+    deleteButton.textContent = "Borrar";
+    deleteButton.addEventListener("click", () => {
+        pintarEsp.remove();
+        puntInteres = puntInteres.filter(item => item !== obj);
+    });
+
+    pintarEsp.appendChild(deleteButton);
+
+    document.querySelector(".informacio").appendChild(pintarEsp);    
 }
 
 const pintarMuseu = function(obj){
-    const pintarMuseu = document.createElement("div");    
+    const pintarMus = document.createElement("div"); //Div que contindrà una localització
+    pintarMus.classList.add("museu");
+
+    const titolMus = document.createElement("div") //Div DINS del contenidor de la localització, amb el nom del museu
+    const nom = document.createElement("h3");
+    nom.textContent = obj.nom;
+    titolMus.appendChild(nom);
+    titolMus.classList.add("titol-localitzacio");
+    pintarMus.appendChild(titolMus);
+
+    
+    const infoMus = document.createElement("div"); //Div DINS del contenidor de la localització, sota el nom del museu, que conté la informació del lloc
+    infoMus.classList.add("info-localitzacio");
+
+    const ciutat = document.createElement("p");
+    ciutat.textContent = `Ciutat: ${obj.ciutat}`;
+    infoMus.appendChild(ciutat);
+
+    const tipus = document.createElement("p");
+    tipus.textContent = `Tipus: ${obj.tipus}`;
+    infoMus.appendChild(tipus);
+
+    const horaris = document.createElement("p");
+    horaris.textContent = `Horaris: ${obj.horaris}`;
+    infoMus.appendChild(horaris);
+
+    const preu = document.createElement("p");
+    preu.textContent = `Preu: ${obj.preu}`;
+    infoMus.appendChild(preu);
+
+    const descripcio = document.createElement("p");
+    descripcio.textContent = `Descripció: ${obj.descripcio}`;
+    infoMus.appendChild(descripcio);
+ 
+    pintarMus.appendChild(infoMus);
+
+    const deleteButton = document.createElement("button");
+    deleteButton.classList.add("boto-delete");
+    deleteButton.textContent = "Borrar";
+    deleteButton.addEventListener("click", () => {
+        pintarMus.remove();
+        museu = museu.filter(item => item !== obj);
+    });
+
+    pintarMus.appendChild(deleteButton);
+
+    document.querySelector(".informacio").appendChild(pintarMus);        
 }
 
 const pintarAtraccio = function(obj){
-    const pintarAtraccio = document.createElement("div");
+    const pintarAtrac = document.createElement("div"); //Div que contindrà una localització
+    pintarAtrac.classList.add("atraccio");
+
+    const titolAtrac = document.createElement("div") //Div DINS del contenidor de la localització, amb el nom de la atracció
+    const nom = document.createElement("h3");
+    nom.textContent = obj.nom;
+    titolAtrac.appendChild(nom);
+    titolAtrac.classList.add("titol-localitzacio");
+    pintarAtrac.appendChild(titolAtrac);
+
+    
+    const infoAtrac = document.createElement("div"); //Div DINS del contenidor de la localització, sota el nom de la atracció, que conté la informació del lloc
+    infoAtrac.classList.add("info-localitzacio");
+
+    const ciutat = document.createElement("p");
+    ciutat.textContent = `Ciutat: ${obj.ciutat}  | `;
+    infoAtrac.appendChild(ciutat);
+
+    const tipus = document.createElement("p");
+    tipus.textContent = `Tipus: ${obj.tipus}  | `;
+    infoAtrac.appendChild(tipus);
+
+    const horaris = document.createElement("p");
+    horaris.textContent = `Horaris: ${obj.horaris}  | `;
+    infoAtrac.appendChild(horaris);
+
+    const preu = document.createElement("p");
+    preu.textContent = `Preu: ${obj.preu}`;
+    infoAtrac.appendChild(preu);
+ 
+    pintarAtrac.appendChild(infoAtrac);
+
+    const deleteButton = document.createElement("button");
+    deleteButton.classList.add("boto-delete");
+    deleteButton.textContent = "Borrar";
+    deleteButton.addEventListener("click", () => {
+        pintarAtrac.remove();
+        atraccio = atraccio.filter(item => item !== obj);
+    });
+
+    pintarAtrac.appendChild(deleteButton);
+
+    document.querySelector(".informacio").appendChild(pintarAtrac);        
 }
 
 const loadData = function (fitxer) {
-    numId++;
+    console.log("HOLAHOLAHOLA");
+    let numId = 1;
+
     fitxer.forEach((obj) => {
-        let dades = liniaCSV.split(CHAR_CSV); // CHAR_CSV es una constante definida en const.js. No hace falta definirla pero son buenas prácticas.
-        switch (obj.tipus.toLowerCase()) {
+        let dades = obj.split(CHAR_CSV); // CHAR_CSV es una constante definida en const.js. No hace falta definirla pero son buenas prácticas.
+        const tipus = dades[TIPUS];
+        switch (tipus.toLowerCase()) {
             case "espai":
                 console.log("Instancia objecte PuntInteres");
-                const espaiObj = new PuntInteres(numId, dades[PAIS], dades[CODI],);
-                PuntInteres.push(obj);
-                //FEINA PER FER: PUSH DE LA INSTÀNCIA DE L'OBJECTE
-                pintarEspai(obj);
+                const espaiObj = new PuntInteres(numId, dades[PAIS], dades[CODI], dades[CIUTAT], dades[NOM], dades[DIR], tipus, dades[LAT], dades[LON], dades[PUNT]);
+                puntInteres.push(espaiObj);
+                pintarEspai(espaiObj);
+                numId++;
                 break;
 
             case "museu":
-                console.log("Instancia objecte PuntInteres");
-                const museuObj = new Museu(dades[PAIS], dades[CODI]);
-                PuntInteres.push(museuObj);
-                //FEINA PER FER: PUSH DE LA INSTÀNCIA DE L'OBJECTE
-                pintarMuseu(obj);
+                console.log("Instancia objecte Museu");
+                const museuObj = new Museu(numId, dades[PAIS], dades[CODI], dades[CIUTAT], dades[NOM], dades[DIR], tipus, dades[LAT], dades[LON], dades[PUNT], dades[HORARIS], dades[PREU], dades[MON], dades[DESC]);
+                museu.push(museuObj);
+                pintarMuseu(museuObj);
+                numId++;
                 break;
 
             case "atraccio":
-                console.log("Instancia objecte PuntInteres");
-                const atraccioObj = new Atraccio(dades[PAIS], dades[CODI]);
-                PuntInteres.push(atraccioObj);
-                //FEINA PER FER: PUSH DE LA INSTÀNCIA DE L'OBJECTE
-                pintarAtraccio(obj);
+                console.log("Instancia objecte Atracció");
+                const atraccioObj = new Atraccio(numId, dades[PAIS], dades[CODI], dades[CIUTAT], dades[NOM], dades[DIR], tipus, dades[LAT], dades[LON], dades[PUNT], dades[HORARIS], dades[PREU], dades[MON]);
+                atraccio.push(atraccioObj);
+                pintarAtraccio(atraccioObj);
+                numId++;
                 break;
 
             default:
@@ -121,6 +245,7 @@ const loadData = function (fitxer) {
                 });
         }
     });
+    console.log("JIBOIB");
 }
 
 

@@ -44,11 +44,61 @@ body{
 
 .informacio{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     background-color: white;
     border-radius: 5px;
     height: 62vh;
     margin-top: 5px;
+    overflow: scroll;
+}
+
+.espai{
+    background-color: rgb(203, 235, 203);
+    border-radius: 5px;
+    padding: 5px;
+    width: 90%;
+    margin-bottom: 10px;
+}
+
+.museu{
+    background-color: rgb(211, 187, 120);
+    border-radius: 5px;
+    padding: 5px;
+    width: 90%;
+    margin-bottom: 10px;
+}
+
+.atraccio{
+    background-color: rgb(211, 208, 41);
+    border-radius: 5px;
+    padding: 5px;
+    width: 90%;
+    margin-bottom: 10px;
+}
+
+.titol-localitzacio{
+    display: flex;
+    justify-content: center;
+}
+
+.titol-localitzacio > h3{
+    margin: 0;
+}
+
+.info-localitzacio{
+    display: flex;
+    justify-content: center;
+}
+
+.info-localitzacio > p{
+    margin: 0;
+}
+
+.boto-delete{
+    color: white;
+    background-color: rgb(206, 60, 60);
+    border-radius: 5px;
 }
 
 .numTotal-netejar{
