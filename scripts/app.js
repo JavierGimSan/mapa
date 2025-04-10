@@ -4,6 +4,10 @@ const dropZoneObj = document.querySelector(".dropZone");
 
 let fitxer = []
 
+let puntInteres = [];
+let museu = [];
+let atraccio = [];
+
 //Funció per detectar quan un fitxer ha sigut arrossegat a la drop zone.
 dropZoneObj.addEventListener("dragover", function (event) {
     event.preventDefault(); // Evita que la pantalla refresqui es pugui continuar con el flujo de ejecución.
