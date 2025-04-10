@@ -1,0 +1,95 @@
+body{
+    background-color: rgb(238, 238, 238);
+}
+
+.main-container{
+    display: flex;
+    background-color: rgb(238, 238, 238);
+}
+
+.filtres{
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.filtres-tipus-ordenacio{
+    display: flex;
+    justify-content: space-between;
+}
+
+.filtre-tipus{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    text-align: center;
+    margin: 1px;
+}
+
+.filtre-ordenacio{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    text-align: center;
+    margin: 1px;
+}
+
+.filtre-input{
+    width:98.5%;
+}
+
+.menu-main{
+    width: 40%;
+}
+
+.informacio{
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    border-radius: 5px;
+    height: 62vh;
+    margin-top: 5px;
+}
+
+.numTotal-netejar{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+
+.num-total{
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.boto-netejar-container{
+    display: flex;
+    align-items: center;
+}
+
+.boto-netejar{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: white;
+    border-radius: 5px;
+
+}
+
+.dropZone{
+    border: 1px dashed black;
+    border-radius: 5px;
+    height: 10vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2px;
+}
+
+#map {
+    height: 96vh;
+    width: 60vw;
+    border-radius: 10px;
+    margin-left: 10px;
+}
