@@ -31,21 +31,46 @@ const loadFile = function (files) {
 
 const readCSV = function (file) {
     const reader = new FileReader();
+    const tipusSet = new Set(); //Set que conté els tipus de les ubicacions
+    const tipusObj = document.querySelector(".tipus"); //Objecte que desplegarà els tipus a la vista.
+
     reader.onload = () => {
+
         // Aquí rebem la informació
         fitxer = reader.result.trim().split("\n").slice(1);
         console.log(fitxer);
+
+        //Afegim al tipusSet els tipus que hi ha al CSV
+        for(let i = 0; i<fitxer.length; i++){
+            const camps = fitxer[i].split(CHAR_CSV);
+            const tipus = camps[TIPUS]
+            console.log("TESTEST", tipus);
+            tipusSet.add(tipus);
+        }
+        console.log(tipusSet);
+
+        //Per netejar el desplegable al afegir un nou fitxer es crea una copia de selectTipus amb el spreadOperator (...)
+        const selectTipus = document.querySelector(".tipus");
+        [...selectTipus.options].forEach((option) => {
+            if (option.textContent !== "Tots") {
+                selectTipus.removeChild(option);
+            }
+        });
+
+        //Per cada tipus que hi hagi creem un element i l'afegim al desplegable
+        tipusSet.forEach((tipus) => {
+            const option = document.createElement("option");
+            option.value = tipus;
+            option.textContent = tipus;
+            selectTipus.appendChild(option);
+        })
+
     };
     reader.onerror = () => {
         showMessage("Error reading the file. Please try again.", "error");
     };
     reader.readAsText(file, "UTF-8");
 
-    let tipus = new Set();
-
-    for(let i = 1; i<=fitxer.length; i++){
-        console.log(fitxer["tipus"]);
-    }
 }
 
 const pintarEspai = function(obj){
